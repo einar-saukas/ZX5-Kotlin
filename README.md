@@ -7,7 +7,8 @@
 
 ## Requirements
 
-This compressor requires [Java](https://www.java.com/) 8 or later.
+To run this compressor, you must have installed [Java](https://www.java.com/) 8 
+or later.
 
 
 ## Usage
@@ -19,7 +20,14 @@ follows:
 java -jar zx5.jar Cobra.scr
 ```
 
-This compressor executes 16 threads by default. You can use parameter "-p" to 
+Java 8 memory allocation is limited to (at most) 1Gb by default. You can use 
+parameter "-Xmx" to increase maximum memory allocation, for instance:
+
+```
+java -Xmx2G -jar zx5.jar Cobra.scr
+```
+
+This compressor uses 16 threads by default. You can use parameter "-p" to
 specify a different number of threads, for instance:
 
 ```
