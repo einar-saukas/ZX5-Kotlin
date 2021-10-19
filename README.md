@@ -48,3 +48,7 @@ authored by **Einar Saukas** and it's available under the "BSD-3" license.
 
 * [ZX5](https://github.com/einar-saukas/ZX5) - The original version of **ZX5**,
 by the same author.
+
+* [ZX0-Kotlin](https://github.com/einar-saukas/ZX0-Kotlin) - A similar
+multi-thread data compressor for [ZX0](https://github.com/einar-saukas/ZX0),
+by the same author.

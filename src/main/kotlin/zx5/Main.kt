@@ -82,11 +82,11 @@ fun main(args: Array<String>) {
         i + 2 -> args[i + 1]
         else -> {
             System.err.println("""Usage: java -jar zx5.jar [-pN] [-f] [-c] [-b] [-q] input [output.zx5]
-          -p      Parallel processing with N threads      
-          -f      Force overwrite of output file
-          -c      Classic file format (v1.*)
-          -b      zx5.Compress backwards
-          -q      Quick non-optimal compression""")
+  -p      Parallel processing with N threads
+  -f      Force overwrite of output file
+  -c      Classic file format (v1.*)
+  -b      zx5.Compress backwards
+  -q      Quick non-optimal compression""")
             exitProcess(1)
         }
     }

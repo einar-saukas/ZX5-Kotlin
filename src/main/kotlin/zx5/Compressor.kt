@@ -38,11 +38,13 @@ class Compressor {
     private fun readBytes(n: Int) {
         inputIndex += n
         diff += n
-        if (diff > delta) delta = diff
+        if (delta < diff) {
+            delta = diff
+        }
     }
 
     private fun writeByte(value: Int) {
-        output[outputIndex++] = (value and 0xff).toByte()
+        output[outputIndex++] = value.toByte()
         diff--
     }
 
@@ -56,7 +58,7 @@ class Compressor {
                 writeByte(0)
             }
             if (value > 0) {
-                output[bitIndex] = (bitMask or output[bitIndex].toInt()).toByte()
+                output[bitIndex] = (output[bitIndex] + bitMask).toByte()
             }
             bitMask = bitMask shr 1
         }
@@ -84,14 +86,6 @@ class Compressor {
         // calculate and allocate output buffer
         output = ByteArray((optimal.bits + 27) / 8)
 
-        // initialize variables
-        diff = output.size - input.size + skip
-        delta = 0
-        inputIndex = skip
-        outputIndex = 0
-        bitMask = 0
-        skipNext = true
-
         // un-reverse optimal sequence
         var current: Block? = optimal
         var prev: Block? = null
@@ -101,6 +95,14 @@ class Compressor {
             prev = current
             current = next
         }
+
+        // initialize data
+        diff = output.size - input.size + skip
+        delta = 0
+        inputIndex = skip
+        outputIndex = 0
+        bitMask = 0
+        skipNext = true
 
         // generate output
         current = prev!!.chain
@@ -136,6 +138,7 @@ class Compressor {
                     // copy from 2nd last offset length
                     writeInterlacedEliasGamma(current.length, backwardsMode, false)
                     readBytes(current.length)
+
                     lastOffset2 = lastOffset1
                     lastOffset1 = current.offset
                 }
@@ -148,6 +151,7 @@ class Compressor {
                     // copy from 3rd last offset length
                     writeInterlacedEliasGamma(current.length, backwardsMode, false)
                     readBytes(current.length)
+
                     lastOffset3 = lastOffset2
                     lastOffset2 = lastOffset1
                     lastOffset1 = current.offset
@@ -168,6 +172,7 @@ class Compressor {
                     skipNext = true
                     writeInterlacedEliasGamma(current.length - 1, backwardsMode, false)
                     readBytes(current.length)
+                    
                     lastOffset3 = lastOffset2
                     lastOffset2 = lastOffset1
                     lastOffset1 = current.offset
