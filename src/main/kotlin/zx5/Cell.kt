@@ -38,14 +38,9 @@ private fun eliasGammaBits(value: Int): Int {
 class Cell {
     var bits: Int
     var index: Int
-    private val maps: MutableMap<Offsets, Block> = HashMap()
+    private val maps = HashMap<Offsets, Block>()
 
-    constructor() {
-        bits = Int.MAX_VALUE
-        index = Int.MIN_VALUE
-    }
-
-    constructor(bits: Int, index: Int) {
+    constructor(bits: Int = Int.MAX_VALUE, index: Int = Int.MIN_VALUE) {
         this.bits = bits
         this.index = index
     }

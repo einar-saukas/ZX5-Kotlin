@@ -36,9 +36,9 @@ const val MAX_SCALE = 55
 private fun offsetCeiling(index: Int, offsetLimit: Int): Int = min(max(index, INITIAL_OFFSET), offsetLimit)
 
 class Optimizer {
-    private var lastLiteral = Array(0) { Cell() }
-    private var lastMatch = Array(0) { Cell() }
-    private var optimal = Array(0) { Cell() }
+    private var lastLiteral = emptyArray<Cell>()
+    private var lastMatch = emptyArray<Cell>()
+    private var optimal = emptyArray<Cell>()
 
     fun optimize(input: ByteArray, skip: Int, offsetLimit: Int, threads: Int, verbose: Boolean): Block {
 
