@@ -66,9 +66,9 @@ class Optimizer {
             } else {
                 val taskSize = maxOffset / threads + 1
                 val tasks = LinkedList<Future<Int>>()
-                for (firstOffset in 1..maxOffset step taskSize) {
-                    val lastOffset = min(firstOffset + taskSize - 1, maxOffset)
-                    tasks.add(pool.submit<Int> { processTask(firstOffset, lastOffset, index, skip, input) })
+                for (initialOffset in 1..maxOffset step taskSize) {
+                    val finalOffset = min(initialOffset + taskSize - 1, maxOffset)
+                    tasks.add(pool.submit<Int> { processTask(initialOffset, finalOffset, index, skip, input) })
                 }
                 optimalBits = Int.MAX_VALUE
                 for (task in tasks) {
@@ -104,9 +104,9 @@ class Optimizer {
         return optimal[input.size - 1].anyBlock()
     }
 
-    private fun processTask(firstOffset: Int, lastOffset: Int, index: Int, skip: Int, input: ByteArray): Int {
+    private fun processTask(initialOffset: Int, finalOffset: Int, index: Int, skip: Int, input: ByteArray): Int {
         var optimalBits = Int.MAX_VALUE
-        for (offset in firstOffset..lastOffset) {
+        for (offset in initialOffset..finalOffset) {
             if (index != skip && index >= offset && input[index] == input[index - offset]) {
                 // copy from last offset
                 if (lastLiteral[offset].isValid()) {
