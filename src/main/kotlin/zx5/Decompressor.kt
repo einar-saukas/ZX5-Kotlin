@@ -54,7 +54,7 @@ class Decompressor {
         bitMask = bitMask shr 1
         if (bitMask == 0) {
             bitMask = 128
-            bitValue = readByte().toUByte().toInt()
+            bitValue = readByte().toInt()
         }
         return if (bitValue and bitMask != 0) 1 else 0
     }
