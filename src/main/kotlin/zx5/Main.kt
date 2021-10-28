@@ -92,7 +92,7 @@ fun main(args: Array<String>) {
             if (!decompress) {
                 args[i] + ".zx5"
             } else {
-                if (args[i].endsWith(".zx5")) {
+                if (args[i].length > 4 && args[i].endsWith(".zx5")) {
                     args[i].removeSuffix(".zx5")
                 } else {
                     System.err.println("Error: Cannot infer output filename")

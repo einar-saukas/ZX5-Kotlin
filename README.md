@@ -50,5 +50,9 @@ authored by **Einar Saukas** and it's available under the "BSD-3" license.
 by the same author.
 
 * [ZX0-Kotlin](https://github.com/einar-saukas/ZX0-Kotlin) - A similar
-multi-thread data compressor for [ZX0](https://github.com/einar-saukas/ZX0),
-by the same author.
+multi-thread data compressor for [ZX0](https://github.com/einar-saukas/ZX0)
+in [Kotlin](https://kotlinlang.org/), by the same author.
+
+* [ZX0-Java](https://github.com/einar-saukas/ZX0-Java) - A similar
+multi-thread data compressor for [ZX0](https://github.com/einar-saukas/ZX0)
+in [Java](https://www.java.com/), by the same author.
